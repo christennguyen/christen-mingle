@@ -1,6 +1,17 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { v4 as uuidv4 } from 'uuid'
+import jesusGun from 'public/images/IMG_6490.jpg'
+import jesusShocked from 'public/images/IMG_6568.jpg'
+import garfield from 'public/images/IMG_7083.jpg'
+import frogRing from 'public/images/IMG_7400.jpg'
+import rapture from 'public/images/IMG_7639.jpg'
+import fineFire from 'public/images/IMG_8080.jpg'
+import screamingDog from 'public/images/IMG_8384.jpg'
+import spongebob from 'public/images/IMG_8453.jpg'
+import painScale from 'public/images/IMG_8461.jpg'
+import funFrog from 'public/images/IMG_8490.jpg'
+import feathersMcgraw from 'public/images/IMG_8591.jpg'
 
 const StyledContainer = styled.div`
     background-color: grey;
@@ -101,6 +112,8 @@ const messageItems = [
                 sender: 'me',
                 text: 'sushi, korean fried chicken, spring rolls, banh xeo',
             },
+            { sender: 'you', text: 'favorite social media platform?' },
+            { sender: 'me', text: 'twitter for sure' },
             {
                 sender: 'you',
                 text: 'what was your favorite cartoon growing up?',
@@ -141,6 +154,72 @@ const messageItems = [
             },
         ],
     },
+    {
+        title: 'Memes',
+        content: [
+            {
+                sender: 'you',
+                text: 'send me several memes that describe you in a nutshell',
+            },
+            {
+                sender: 'me',
+                text: '',
+                image: jesusGun,
+                alt: 'jesus holding a gun',
+            },
+            {
+                sender: 'me',
+                text: '',
+                image: jesusShocked,
+                alt: 'jesus shocked with small hand',
+            },
+            {
+                sender: 'me',
+                text: '',
+                image: garfield,
+                alt: 'no garfields allowed',
+            },
+            {
+                sender: 'me',
+                text: '',
+                image: frogRing,
+                alt: 'a very special visitor',
+            },
+            {
+                sender: 'me',
+                text: '',
+                image: rapture,
+                alt: 'jesus calls for the start of rapture',
+            },
+            {
+                sender: 'me',
+                text: '',
+                image: fineFire,
+                alt: 'this is fine but with a nice twist',
+            },
+            {
+                sender: 'me',
+                text: '',
+                image: screamingDog,
+                alt: 'screaming dog',
+            },
+            {
+                sender: 'me',
+                text: '',
+                image: spongebob,
+                alt: 'balling spongebob',
+            },
+            { sender: 'me', text: '', image: painScale, alt: 'pain scale' },
+            { sender: 'me', text: '', image: funFrog, alt: 'fun frog' },
+            {
+                sender: 'me',
+                text: '',
+                image: feathersMcgraw,
+                alt: 'feathers mcgraw',
+            },
+        ],
+    },
+    { title: 'Cons of dating me', content: [] },
     {
         title: "Let's keep in touch!",
         content: [
@@ -205,11 +284,15 @@ const Messages = () => {
                 </StyledSidebar>
                 <MessageContentContainer>
                     <MessageContent>
-                        {messageItems[indexDisplayed].content.map((text) => (
-                            <SpeechBubble sender={text.sender}>
-                                {text.text}
-                            </SpeechBubble>
-                        ))}
+                        {messageItems[indexDisplayed].content.map((text) => {
+                            text.text === '' ? (
+                                <img src={text.image} alt={text.alt} />
+                            ) : (
+                                <SpeechBubble sender={text.sender}>
+                                    {text.text}
+                                </SpeechBubble>
+                            )
+                        })}
                     </MessageContent>
                 </MessageContentContainer>
             </StyledLayout>
