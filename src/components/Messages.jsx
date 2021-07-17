@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import MessagePreview from './MessagePreview'
+import TextMessage from './TextMessage'
+import SidebarHeader from './SidebarHeader'
+import ContentHeader from './ContentHeader'
+import ContentFooter from './ContentFooter'
 import { messageData } from '../data/data'
 
 const StyledContainer = styled.div`
@@ -9,6 +13,8 @@ const StyledContainer = styled.div`
     border: 0.5px solid white;
     color: white;
     width: 770px;
+    margin-top: 90px;
+    margin-left: 30px;
 `
 
 const StyledLayout = styled.div`
@@ -17,9 +23,11 @@ const StyledLayout = styled.div`
 `
 
 const StyledSidebar = styled.div`
-    width: 400px;
+    width: 336px;
     background-color: #5a595a;
     overflow: scroll;
+    border-bottom-left-radius: 16px;
+    overflow-x: hidden;
 `
 
 const MessageContent = styled.div`
@@ -31,28 +39,13 @@ const MessageContent = styled.div`
 const MessageContentContainer = styled.div`
     width: 600px;
     background-color: #1f1f1f;
-    overflow: scroll;
+    overflow-y: scroll;
+    height: 410px;
 `
 
-const SpeechBubble = styled.div`
-    background-color: ${(props) =>
-        props.sender === 'me' ? '#218AFF' : '#3B3B3D'};
-    border-radius: 23px;
-    padding: 8px 14px;
-    width: fit-content;
-    margin-bottom: 3px;
-    ${(props) => props.sender === 'me' && 'align-self: flex-end'};
-    align-self: ${(props) =>
-        props.sender === 'me' ? 'flex-end' : 'undefined'};
-    max-width: 250px;
-`
-
-const StyledImage = styled.img`
-    border-radius: 23px;
-    width: 250px;
-    margin-bottom: 3px;
-    height: auto;
-    ${(props) => props.sender === 'me' && 'align-self: flex-end'};
+const Column = styled.div`
+    display: flex;
+    flex-direction: column;
 `
 const Messages = () => {
     const [indexDisplayed, setIndexDisplayed] = useState(0)
@@ -62,35 +55,32 @@ const Messages = () => {
     return (
         <StyledContainer>
             <StyledLayout>
-                <StyledSidebar>
-                    {messageData.map((message, index) => (
-                        <MessagePreview
-                            message={message}
-                            index={index}
-                            onClick={() => handleClick(index)}
-                        />
-                    ))}
-                </StyledSidebar>
-                <MessageContentContainer>
-                    <MessageContent>
-                        {messageData[indexDisplayed].content.map((message) => {
-                            if (message.text === '') {
-                                return (
-                                    <StyledImage
-                                        sender={message.sender}
-                                        src={message.image}
-                                        alt={message.alt}
-                                    />
+                <Column>
+                    <SidebarHeader />
+                    <StyledSidebar>
+                        {messageData.map((message, index) => (
+                            <MessagePreview
+                                message={message}
+                                index={index}
+                                onClick={() => handleClick(index)}
+                                selected={indexDisplayed}
+                            />
+                        ))}
+                    </StyledSidebar>
+                </Column>
+                <Column>
+                    <ContentHeader />
+                    <MessageContentContainer>
+                        <MessageContent>
+                            {messageData[indexDisplayed].content.map(
+                                (message) => (
+                                    <TextMessage message={message} />
                                 )
-                            }
-                            return (
-                                <SpeechBubble sender={message.sender}>
-                                    {message.text}
-                                </SpeechBubble>
-                            )
-                        })}
-                    </MessageContent>
-                </MessageContentContainer>
+                            )}
+                        </MessageContent>
+                    </MessageContentContainer>
+                    <ContentFooter />
+                </Column>
             </StyledLayout>
         </StyledContainer>
     )

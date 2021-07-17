@@ -82,11 +82,13 @@ export const messageData = [
             { sender: 'me', text: 'i return to these playlists a lot' },
             {
                 sender: 'me',
-                text: 'https://open.spotify.com/playlist/21CyKBJ4LQXG1QIEJo7LH8?si=b9fe49ab5e9c451c',
+                text: '',
+                link: 'https://open.spotify.com/playlist/21CyKBJ4LQXG1QIEJo7LH8?si=b9fe49ab5e9c451c',
             },
             {
                 sender: 'me',
-                text: 'https://open.spotify.com/playlist/157zJiTh0Af6RUq5CnrbhL?si=555cadb024194b5c',
+                text: '',
+                link: 'https://open.spotify.com/playlist/157zJiTh0Af6RUq5CnrbhL?si=555cadb024194b5c',
             },
             { sender: 'you', text: 'favorite foods?' },
             {
@@ -209,7 +211,11 @@ export const messageData = [
                 sender: 'me',
                 text: 'if you read all this and think you would like to become friends, come find me on my social media!',
             },
-            { sender: 'me', text: 'https://twitter.com/ChristenNguyen' },
+            {
+                sender: 'me',
+                text: '',
+                link: 'https://twitter.com/ChristenNguyen',
+            },
         ],
     },
 ]
