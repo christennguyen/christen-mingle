@@ -11,6 +11,7 @@ import spongebob from '../images/IMG_8453.JPG'
 import painScale from '../images/IMG_8461.JPG'
 import funFrog from '../images/IMG_8490.JPG'
 import feathersMcgraw from '../images/IMG_8591.JPG'
+import profilePic from '../images/me.jpg'
 
 export const messageData = [
     {
@@ -29,6 +30,7 @@ export const messageData = [
                 sender: 'me',
                 text: "my name is christen and i'm a 26 year old bay area native!",
             },
+            { sender: 'me', text: '', image: profilePic, alt: 'pic of me' },
             {
                 sender: 'me',
                 text: 'i built this app so i could make friends and maybe more than that! hence the play on Christian Mingle. ',
