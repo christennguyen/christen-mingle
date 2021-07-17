@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import styled from 'styled-components'
-import smileIcon from '../images/icons/smile.svg'
+import smileIcon from '../images/icons/smileDark.svg'
 
 const StyledContainer = styled.div`
     background-color: #1f1f1f;
     padding: 20px;
-    border-bottom-right-radius: 8px;
+    border-bottom-right-radius: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -29,7 +29,7 @@ const StyledIcon = styled.img`
 `
 const ContentFooter = () => (
     <StyledContainer>
-        <StyledInput type="text" placeholder="Christen Mingle" />
+        <StyledInput type="text" placeholder="Christen Mingle - WIP" />
         <StyledIcon src={smileIcon} alt="smiley" height={20} />
     </StyledContainer>
 )

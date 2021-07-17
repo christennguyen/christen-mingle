@@ -8,9 +8,9 @@ const StyledContainer = styled.div`
     display: flex;
     margin: 0px 10px;
     cursor: pointer;
-    height: 70px;
+    height: 68px;
     background-color: ${(props) => (props.selected ? '#218AFF' : 'inherit')};
-    border-radius: 4px;
+    border-radius: 10px;
 `
 
 const StyledIcon = styled.div`
@@ -19,6 +19,12 @@ const StyledIcon = styled.div`
     height: 44px;
     width: 44px;
     margin: 14px 0 0 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Nunito', sans-serif;
 `
 
 const StyledTextContainer = styled.div`
@@ -28,6 +34,12 @@ const StyledTextContainer = styled.div`
 `
 const StyledTitle = styled.p`
     font-weight: bold;
+    margin-bottom: 0px;
+`
+
+const StyledSubtible = styled.p`
+    margin: 0;
+    color: ${(props) => (props.selected ? 'white' : '#b3b3b3')};
 `
 const MessagePreview = ({ message, index, onClick, selected }) => (
     <StyledContainer
@@ -36,9 +48,12 @@ const MessagePreview = ({ message, index, onClick, selected }) => (
         onClick={onClick}
         selected={index === selected}
     >
-        <StyledIcon />
+        <StyledIcon>{message.title.charAt(0)}</StyledIcon>
         <StyledTextContainer selected={index === selected}>
             <StyledTitle>{message.title}</StyledTitle>
+            <StyledSubtible selected={index === selected}>
+                {message.subtitle}
+            </StyledSubtible>
         </StyledTextContainer>
     </StyledContainer>
 )

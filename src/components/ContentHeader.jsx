@@ -5,8 +5,8 @@ import infoIcon from '../images/icons/infoDark.svg'
 
 const StyledContainer = styled.div`
     background-color: #444344;
-    padding: 20px;
-    border-top-right-radius: 8px;
+    padding: 16px;
+    border-top-right-radius: 10px;
     display: flex;
     justify-content: space-between;
 `

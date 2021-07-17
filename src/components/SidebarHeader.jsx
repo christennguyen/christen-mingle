@@ -2,10 +2,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import editIcon from '../images/icons/editDark.svg'
-import searchIcon from '../images/icons/search.svg'
+import searchIcon from '../images/icons/searchDark.svg'
 
 const StyledSidebarHeader = styled.div`
-    border-top-left-radius: 16px;
+    border-top-left-radius: 10px;
     height: 62px;
     padding: 18px 8px 8px 14px;
     background-color: #5a595a;
@@ -19,14 +19,14 @@ const Row = styled.div`
 
 const StyledWindowControlContainer = styled.div`
     display: flex;
-    width: 60px;
+    width: 53px;
     justify-content: space-between;
     margin-left: 10px;
 `
 
 const StyledWindowControl = styled.div`
-    height: 14px;
-    width: 14px;
+    height: 12px;
+    width: 12px;
     background-color: ${(props) => props.color};
     border-radius: 100%;
     cursor: pointer;
@@ -34,7 +34,7 @@ const StyledWindowControl = styled.div`
 
 const StyledInput = styled.input`
     background-color: #626162;
-    color: #a9a9b0;
+    color: white;
     width: 266px;
     height: 24px;
     border-radius: 8px;
@@ -42,6 +42,10 @@ const StyledInput = styled.input`
     margin-top: 10px;
     padding-left: 26px;
     font-size: 14px;
+
+    ::placeholder {
+        color: #b3b3b3;
+    }
 `
 
 const SearchbarContainer = styled.div`

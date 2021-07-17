@@ -12,10 +12,13 @@ import painScale from '../images/IMG_8461.JPG'
 import funFrog from '../images/IMG_8490.JPG'
 import feathersMcgraw from '../images/IMG_8591.JPG'
 import profilePic from '../images/me.jpg'
+import skate from '../images/skate.jpg'
+import ostrich from '../images/ostrich.jpg'
 
 export const messageData = [
     {
         title: 'About me',
+        subtitle: 'and what this page is for',
         content: [
             { sender: 'me', text: 'hello!' },
             { sender: 'me', text: "how's it going?" },
@@ -24,13 +27,19 @@ export const messageData = [
                 sender: 'me',
                 text: "writing fake dialog is kinda hard isn't it?",
             },
-            { sender: 'you', text: 'yeah lol' },
+            { sender: 'you', text: 'yeah 🤣' },
             { sender: 'you', text: 'so tell me a little bit about yourself!' },
             {
                 sender: 'me',
                 text: "my name is christen and i'm a 26 year old bay area native!",
             },
-            { sender: 'me', text: '', image: profilePic, alt: 'pic of me' },
+            {
+                sender: 'me',
+                text: '',
+                image: profilePic,
+                alt: 'pic of me',
+                title: 'courtesy of my sister @avecvousphoto',
+            },
             {
                 sender: 'me',
                 text: 'i built this app so i could make friends and maybe more than that! hence the play on Christian Mingle. ',
@@ -69,6 +78,7 @@ export const messageData = [
     },
     {
         title: 'Favorite things',
+        subtitle: 'these are a few of my...',
         content: [
             { sender: 'you', text: 'hi!' },
             { sender: 'me', text: 'new phone who dis?' },
@@ -119,6 +129,7 @@ export const messageData = [
     },
     {
         title: 'Hobbies',
+        subtitle: 'so what do you like to do...',
         content: [
             {
                 sender: 'you',
@@ -132,6 +143,7 @@ export const messageData = [
                 sender: 'me',
                 text: 'in my free time i love rollerskating! you can catch me at the rink working on my jam skating or taking bad spills on my tailbone at the skatepark!',
             },
+            { sender: 'me', text: '', image: skate, alt: 'me skating' },
             { sender: 'you', text: 'what else do you like doing?' },
             {
                 sender: 'me',
@@ -141,6 +153,7 @@ export const messageData = [
     },
     {
         title: 'Memes',
+        subtitle: 'may-mays',
         content: [
             {
                 sender: 'you',
@@ -207,6 +220,7 @@ export const messageData = [
     { title: 'Cons of dating me', content: [] },
     {
         title: "Let's keep in touch!",
+        subtitle: 'Attachment: 1 image',
         content: [
             { sender: 'me', text: 'thanks for making it this far!' },
             {
@@ -217,6 +231,12 @@ export const messageData = [
                 sender: 'me',
                 text: '',
                 link: 'https://twitter.com/ChristenNguyen',
+            },
+            {
+                sender: 'me',
+                text: '',
+                image: ostrich,
+                alt: 'ostrich screaming at me',
             },
         ],
     },

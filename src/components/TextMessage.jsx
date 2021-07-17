@@ -22,8 +22,23 @@ const StyledImage = styled.img`
     margin-bottom: 3px;
     height: auto;
     ${(props) => props.sender === 'me' && 'align-self: flex-end'};
+    cursor: pointer;
+`
+
+const StyledReadMessage = styled.div`
+    color: #909090;
+    ${(props) => props.sender === 'me' && 'align-self: flex-end'};
+    font-size: 11px;
+    margin-bottom: 6px;
+    ${(props) => props.sender === 'me' && 'margin-right: 2px'};
 `
 const TextMessage = ({ message }) => {
+    /* eslint-disable no-console */
+    const time = new Date().toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+    })
     if (message.text === '') {
         if (message.image) {
             return (
@@ -31,6 +46,7 @@ const TextMessage = ({ message }) => {
                     sender={message.sender}
                     src={message.image}
                     alt={message.alt}
+                    title={message.title || message.alt}
                 />
             )
         }
@@ -40,7 +56,16 @@ const TextMessage = ({ message }) => {
             </SpeechBubble>
         )
     }
-    return <SpeechBubble sender={message.sender}>{message.text}</SpeechBubble>
+    return (
+        <>
+            <SpeechBubble sender={message.sender}>{message.text}</SpeechBubble>
+            {message.read && (
+                <StyledReadMessage sender={message.sender}>
+                    <b>Read</b> {time}
+                </StyledReadMessage>
+            )}
+        </>
+    )
 }
 
 export default TextMessage
