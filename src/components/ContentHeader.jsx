@@ -9,6 +9,10 @@ const StyledContainer = styled.div`
     border-top-right-radius: 10px;
     display: flex;
     justify-content: space-between;
+
+    @media only screen and (max-width: 600px) {
+        border-top-right-radius: 0px;
+    }
 `
 
 const StyledIcon = styled.img`

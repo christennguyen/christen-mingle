@@ -10,16 +10,19 @@ const StyledContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media only screen and (max-width: 600px) {
+        border-bottom-right-radius: 0px;
+    }
 `
 
 const StyledInput = styled.input`
     background-color: #1f1f1f;
     color: white;
-    width: 507px;
+    width: 80%;
     height: 23px;
     border-radius: 25px;
     border: 1px solid #807e80;
-    /* margin-top: 10px; */
     padding-left: 16px;
     font-size: 14px;
 `

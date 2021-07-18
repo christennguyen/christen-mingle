@@ -8,11 +8,9 @@ import ContentFooter from './ContentFooter'
 import { messageData } from '../data/data'
 
 const StyledContainer = styled.div`
-    background-color: grey;
     border-radius: 10px;
-    border: 0.5px solid white;
     color: white;
-    width: 770px;
+    width: calc(100% - 32px);
     margin-top: 90px;
     margin-left: 30px;
 `
@@ -28,7 +26,6 @@ const StyledSidebar = styled.div`
     overflow: scroll;
     border-bottom-left-radius: 10px;
     overflow-x: hidden;
-    height: 413px;
 `
 
 const MessageContent = styled.div`
@@ -38,15 +35,30 @@ const MessageContent = styled.div`
 `
 
 const MessageContentContainer = styled.div`
-    width: 600px;
     background-color: #1f1f1f;
     overflow-y: scroll;
-    height: 410px;
+    height: 100%;
 `
 
 const Column = styled.div`
     display: flex;
     flex-direction: column;
+`
+
+const ContentContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    max-width: 600px;
+    min-width: 400px;
+
+    @media only screen and (max-width: 600px) {
+        width: 100%;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+    }
 `
 const StyledDelivered = styled.div`
     color: #909090;
@@ -57,6 +69,15 @@ const StyledDelivered = styled.div`
     margin-right: 2px;
 `
 
+const StyledDisclaimer = styled.div`
+    display: none;
+    @media only screen and (max-width: 600px) {
+        display: block;
+        width: 80%;
+        text-align: center;
+        margin: 0 auto 10px auto;
+    }
+`
 const Messages = () => {
     const [indexDisplayed, setIndexDisplayed] = useState(0)
     const handleClick = (index) => {
@@ -78,7 +99,7 @@ const Messages = () => {
                         ))}
                     </StyledSidebar>
                 </Column>
-                <Column>
+                <ContentContainer>
                     <ContentHeader />
                     <MessageContentContainer>
                         <MessageContent>
@@ -90,10 +111,15 @@ const Messages = () => {
                             {messageData[indexDisplayed].content.length > 0 && (
                                 <StyledDelivered>Delivered</StyledDelivered>
                             )}
+                            <StyledDisclaimer>
+                                You are viewing the mobile version of this app.
+                                For the best experience of Christen Mingle,
+                                please view on desktop.
+                            </StyledDisclaimer>
                         </MessageContent>
                     </MessageContentContainer>
                     <ContentFooter />
-                </Column>
+                </ContentContainer>
             </StyledLayout>
         </StyledContainer>
     )
