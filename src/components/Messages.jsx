@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react'
-import styled from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import MessagePreview from './MessagePreview'
 import TextMessage from './TextMessage'
 import SidebarHeader from './SidebarHeader'
@@ -8,11 +9,9 @@ import ContentFooter from './ContentFooter'
 import { messageData } from '../data/data'
 
 const StyledContainer = styled.div`
-    background-color: grey;
     border-radius: 10px;
-    border: 0.5px solid white;
-    color: white;
-    width: 770px;
+    color: ${(props) => (props.theme.main === 'dark' ? 'white' : 'black')};
+    width: calc(100% - 32px);
     margin-top: 90px;
     margin-left: 30px;
 `
@@ -24,11 +23,11 @@ const StyledLayout = styled.div`
 
 const StyledSidebar = styled.div`
     width: 336px;
-    background-color: #5a595a;
+    background-color: ${(props) =>
+        props.theme.main === 'dark' ? '#5a595a' : '#E7E7E8'};
     overflow: scroll;
     border-bottom-left-radius: 10px;
     overflow-x: hidden;
-    height: 413px;
 `
 
 const MessageContent = styled.div`
@@ -38,15 +37,31 @@ const MessageContent = styled.div`
 `
 
 const MessageContentContainer = styled.div`
-    width: 600px;
-    background-color: #1f1f1f;
+    background-color: ${(props) =>
+        props.theme.main === 'dark' ? '#1f1f1f' : 'white'};
     overflow-y: scroll;
-    height: 410px;
+    height: 100%;
 `
 
 const Column = styled.div`
     display: flex;
     flex-direction: column;
+`
+
+const ContentContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    max-width: 600px;
+    min-width: 400px;
+
+    @media only screen and (max-width: 600px) {
+        width: 100%;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+    }
 `
 const StyledDelivered = styled.div`
     color: #909090;
@@ -57,45 +72,62 @@ const StyledDelivered = styled.div`
     margin-right: 2px;
 `
 
-const Messages = () => {
+const StyledDisclaimer = styled.div`
+    display: none;
+    @media only screen and (max-width: 600px) {
+        display: block;
+        width: 80%;
+        text-align: center;
+        margin: 0 auto 10px auto;
+    }
+`
+const Messages = ({ theme }) => {
     const [indexDisplayed, setIndexDisplayed] = useState(0)
     const handleClick = (index) => {
         setIndexDisplayed(index)
     }
     return (
-        <StyledContainer>
-            <StyledLayout>
-                <Column>
-                    <SidebarHeader />
-                    <StyledSidebar>
-                        {messageData.map((message, index) => (
-                            <MessagePreview
-                                message={message}
-                                index={index}
-                                onClick={() => handleClick(index)}
-                                selected={indexDisplayed}
-                            />
-                        ))}
-                    </StyledSidebar>
-                </Column>
-                <Column>
-                    <ContentHeader />
-                    <MessageContentContainer>
-                        <MessageContent>
-                            {messageData[indexDisplayed].content.map(
-                                (message) => (
-                                    <TextMessage message={message} />
-                                )
-                            )}
-                            {messageData[indexDisplayed].content.length > 0 && (
-                                <StyledDelivered>Delivered</StyledDelivered>
-                            )}
-                        </MessageContent>
-                    </MessageContentContainer>
-                    <ContentFooter />
-                </Column>
-            </StyledLayout>
-        </StyledContainer>
+        <ThemeProvider theme={{ main: theme }}>
+            <StyledContainer>
+                <StyledLayout>
+                    <Column>
+                        <SidebarHeader />
+                        <StyledSidebar>
+                            {messageData.map((message, index) => (
+                                <MessagePreview
+                                    message={message}
+                                    index={index}
+                                    onClick={() => handleClick(index)}
+                                    selected={indexDisplayed}
+                                />
+                            ))}
+                        </StyledSidebar>
+                    </Column>
+                    <ContentContainer>
+                        <ContentHeader />
+                        <MessageContentContainer>
+                            <MessageContent>
+                                {messageData[indexDisplayed].content.map(
+                                    (message) => (
+                                        <TextMessage message={message} />
+                                    )
+                                )}
+                                {messageData[indexDisplayed].content.length >
+                                    0 && (
+                                    <StyledDelivered>Delivered</StyledDelivered>
+                                )}
+                                <StyledDisclaimer>
+                                    You are viewing the mobile version of this
+                                    app. For the best experience of Christen
+                                    Mingle, please view on desktop.
+                                </StyledDisclaimer>
+                            </MessageContent>
+                        </MessageContentContainer>
+                        <ContentFooter />
+                    </ContentContainer>
+                </StyledLayout>
+            </StyledContainer>
+        </ThemeProvider>
     )
 }
 

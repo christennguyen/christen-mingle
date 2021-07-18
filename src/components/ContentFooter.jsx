@@ -4,22 +4,27 @@ import styled from 'styled-components'
 import smileIcon from '../images/icons/smileDark.svg'
 
 const StyledContainer = styled.div`
-    background-color: #1f1f1f;
+    background-color: ${(props) =>
+        props.theme.main === 'dark' ? '#1f1f1f' : 'white'};
     padding: 20px;
     border-bottom-right-radius: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media only screen and (max-width: 600px) {
+        border-bottom-right-radius: 0px;
+    }
 `
 
 const StyledInput = styled.input`
-    background-color: #1f1f1f;
-    color: white;
-    width: 507px;
+    background-color: ${(props) =>
+        props.theme.main === 'dark' ? '#1f1f1f' : 'white'};
+    color: ${(props) => (props.theme.main === 'dark' ? 'white' : 'black')};
+    width: calc(100% - 50px);
     height: 23px;
     border-radius: 25px;
     border: 1px solid #807e80;
-    /* margin-top: 10px; */
     padding-left: 16px;
     font-size: 14px;
 `
