@@ -28,13 +28,14 @@ const StyledTaskbar = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 155px;
+    width: 182px;
     margin-right: 18px;
 `
 
 const StyledThemeButton = styled.div`
     cursor: pointer;
 `
+
 const DesktopHeader = ({ theme, setTheme }) => {
     const time = new Date().toLocaleTimeString([], {
         hour: '2-digit',
@@ -67,7 +68,11 @@ const DesktopHeader = ({ theme, setTheme }) => {
             </StyledAppTaskbar>
             <StyledTaskbar>
                 <StyledThemeButton onClick={updateTheme} role="button">
-                    {theme === 'dark' ? <> &#x263e;</> : <>&#9728; </>}
+                    {theme === 'dark' ? (
+                        <> &#x263e; dark</>
+                    ) : (
+                        <>&#9728; light</>
+                    )}
                 </StyledThemeButton>
                 <StyledDateContainer>
                     {date} {time}

@@ -14,7 +14,7 @@ const StyledContainer = styled.div`
             ? `background-color: 
                   ${props.selected ? '#218AFF' : 'inherit'}}`
             : `background-color: 
-                  ${props.selected ? '#037AFF' : 'inherit'}}`}
+                  ${props.selected ? '#037AFF' : 'inherit'}}`};
     border-radius: 10px;
 `
 
@@ -51,7 +51,7 @@ const StyledTitle = styled.p`
             ? `color: 
              white`
             : `color: 
-              ${props.selected ? 'white' : 'black'}}`}
+              ${props.selected ? 'white' : 'black'}}`};
 `
 
 const StyledSubtible = styled.p`
@@ -61,7 +61,7 @@ const StyledSubtible = styled.p`
             ? `color: 
               ${props.selected ? 'white' : '#b3b3b3'}}`
             : `color: 
-              ${props.selected ? '#D0E4FF' : '#8E8D8E'}}`}
+              ${props.selected ? '#D0E4FF' : '#8E8D8E'}}`};
 `
 const MessagePreview = ({ message, index, onClick, selected }) => {
     const isSelected = index === selected

@@ -8,13 +8,13 @@ const SpeechBubble = styled.div`
             ? `background-color: 
               ${props.sender === 'me' ? '#218AFF' : '#3B3B3D'}}`
             : `background-color: 
-              ${props.sender === 'me' ? '#1587FE' : '#DBDBDD'}}`}
+              ${props.sender === 'me' ? '#1587FE' : '#DBDBDD'}}`};
 
     ${(props) =>
         props.theme.main === 'dark'
             ? `color: white`
             : `color: 
-                      ${props.sender === 'me' ? 'white' : 'black'}}`}
+                      ${props.sender === 'me' ? 'white' : 'black'}}`};
     border-radius: 23px;
     padding: 8px 14px;
     width: fit-content;
