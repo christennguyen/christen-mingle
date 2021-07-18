@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react'
-import styled from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import MessagePreview from './MessagePreview'
 import TextMessage from './TextMessage'
 import SidebarHeader from './SidebarHeader'
@@ -9,7 +10,7 @@ import { messageData } from '../data/data'
 
 const StyledContainer = styled.div`
     border-radius: 10px;
-    color: white;
+    color: ${(props) => (props.theme.main === 'dark' ? 'white' : 'black')};
     width: calc(100% - 32px);
     margin-top: 90px;
     margin-left: 30px;
@@ -22,7 +23,8 @@ const StyledLayout = styled.div`
 
 const StyledSidebar = styled.div`
     width: 336px;
-    background-color: #5a595a;
+    background-color: ${(props) =>
+        props.theme.main === 'dark' ? '#5a595a' : '#E7E7E8'};
     overflow: scroll;
     border-bottom-left-radius: 10px;
     overflow-x: hidden;
@@ -35,7 +37,8 @@ const MessageContent = styled.div`
 `
 
 const MessageContentContainer = styled.div`
-    background-color: #1f1f1f;
+    background-color: ${(props) =>
+        props.theme.main === 'dark' ? '#1f1f1f' : 'white'};
     overflow-y: scroll;
     height: 100%;
 `
@@ -78,50 +81,53 @@ const StyledDisclaimer = styled.div`
         margin: 0 auto 10px auto;
     }
 `
-const Messages = () => {
+const Messages = ({ theme }) => {
     const [indexDisplayed, setIndexDisplayed] = useState(0)
     const handleClick = (index) => {
         setIndexDisplayed(index)
     }
     return (
-        <StyledContainer>
-            <StyledLayout>
-                <Column>
-                    <SidebarHeader />
-                    <StyledSidebar>
-                        {messageData.map((message, index) => (
-                            <MessagePreview
-                                message={message}
-                                index={index}
-                                onClick={() => handleClick(index)}
-                                selected={indexDisplayed}
-                            />
-                        ))}
-                    </StyledSidebar>
-                </Column>
-                <ContentContainer>
-                    <ContentHeader />
-                    <MessageContentContainer>
-                        <MessageContent>
-                            {messageData[indexDisplayed].content.map(
-                                (message) => (
-                                    <TextMessage message={message} />
-                                )
-                            )}
-                            {messageData[indexDisplayed].content.length > 0 && (
-                                <StyledDelivered>Delivered</StyledDelivered>
-                            )}
-                            <StyledDisclaimer>
-                                You are viewing the mobile version of this app.
-                                For the best experience of Christen Mingle,
-                                please view on desktop.
-                            </StyledDisclaimer>
-                        </MessageContent>
-                    </MessageContentContainer>
-                    <ContentFooter />
-                </ContentContainer>
-            </StyledLayout>
-        </StyledContainer>
+        <ThemeProvider theme={{ main: theme }}>
+            <StyledContainer>
+                <StyledLayout>
+                    <Column>
+                        <SidebarHeader />
+                        <StyledSidebar>
+                            {messageData.map((message, index) => (
+                                <MessagePreview
+                                    message={message}
+                                    index={index}
+                                    onClick={() => handleClick(index)}
+                                    selected={indexDisplayed}
+                                />
+                            ))}
+                        </StyledSidebar>
+                    </Column>
+                    <ContentContainer>
+                        <ContentHeader />
+                        <MessageContentContainer>
+                            <MessageContent>
+                                {messageData[indexDisplayed].content.map(
+                                    (message) => (
+                                        <TextMessage message={message} />
+                                    )
+                                )}
+                                {messageData[indexDisplayed].content.length >
+                                    0 && (
+                                    <StyledDelivered>Delivered</StyledDelivered>
+                                )}
+                                <StyledDisclaimer>
+                                    You are viewing the mobile version of this
+                                    app. For the best experience of Christen
+                                    Mingle, please view on desktop.
+                                </StyledDisclaimer>
+                            </MessageContent>
+                        </MessageContentContainer>
+                        <ContentFooter />
+                    </ContentContainer>
+                </StyledLayout>
+            </StyledContainer>
+        </ThemeProvider>
     )
 }
 

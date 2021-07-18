@@ -8,7 +8,8 @@ const StyledSidebarHeader = styled.div`
     border-top-left-radius: 10px;
     height: 62px;
     padding: 18px 8px 8px 14px;
-    background-color: #5a595a;
+    background-color: ${(props) =>
+        props.theme.main === 'dark' ? '#5a595a' : '#E7E7E8'};
 `
 
 const Row = styled.div`
@@ -33,18 +34,23 @@ const StyledWindowControl = styled.div`
 `
 
 const StyledInput = styled.input`
-    background-color: #626162;
-    color: white;
+    background-color: ${(props) =>
+        props.theme.main === 'dark' ? '#626162' : '#DCDBDC'};
+    color: ${(props) => (props.theme.main === 'dark' ? 'white' : 'black')};
     width: 266px;
     height: 24px;
     border-radius: 8px;
-    border: 1px solid #807e80;
+    border: ${(props) =>
+        props.theme.main === 'dark'
+            ? '1px solid #807e80'
+            : '1px solid #D4D3D4'};
     margin-top: 10px;
     padding-left: 26px;
     font-size: 14px;
 
     ::placeholder {
-        color: #b3b3b3;
+        color: ${(props) =>
+            props.theme.main === 'dark' ? '#b3b3b3' : '#8E8E93'};
     }
 `
 

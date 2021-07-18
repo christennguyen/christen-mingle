@@ -4,7 +4,8 @@ import styled from 'styled-components'
 import smileIcon from '../images/icons/smileDark.svg'
 
 const StyledContainer = styled.div`
-    background-color: #1f1f1f;
+    background-color: ${(props) =>
+        props.theme.main === 'dark' ? '#1f1f1f' : 'white'};
     padding: 20px;
     border-bottom-right-radius: 10px;
     display: flex;
@@ -17,9 +18,10 @@ const StyledContainer = styled.div`
 `
 
 const StyledInput = styled.input`
-    background-color: #1f1f1f;
-    color: white;
-    width: 80%;
+    background-color: ${(props) =>
+        props.theme.main === 'dark' ? '#1f1f1f' : 'white'};
+    color: ${(props) => (props.theme.main === 'dark' ? 'white' : 'black')};
+    width: calc(100% - 50px);
     height: 23px;
     border-radius: 25px;
     border: 1px solid #807e80;
